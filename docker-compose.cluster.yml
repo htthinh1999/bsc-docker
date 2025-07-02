@@ -19,7 +19,7 @@ services:
     env_file: .env
     environment:
       NODE_ID: bsc-validator1
-      BOOTSTRAP_HOST: bsc-docker-cluster-bsc-rpc-1
+      BOOTSTRAP_HOST: cluster-bsc-rpc
     volumes:
       - ./storage/bsc-validator1:/root/.ethereum
       - ./scripts:/scripts
@@ -30,7 +30,7 @@ services:
     env_file: .env
     environment:
       NODE_ID: bsc-validator2
-      BOOTSTRAP_HOST: bsc-docker-cluster-bsc-rpc-1
+      BOOTSTRAP_HOST: cluster-bsc-rpc
     volumes:
       - ./storage/bsc-validator2:/root/.ethereum
       - ./scripts:/scripts
@@ -41,7 +41,7 @@ services:
     env_file: .env
     environment:
       NODE_ID: bsc-validator3
-      BOOTSTRAP_HOST: bsc-docker-cluster-bsc-rpc-1
+      BOOTSTRAP_HOST: cluster-bsc-rpc
     volumes:
       - ./storage/bsc-validator3:/root/.ethereum
       - ./scripts:/scripts

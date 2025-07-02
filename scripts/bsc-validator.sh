@@ -14,7 +14,7 @@ echo "validator id: ${HOST_IP}"
 geth --config ${DATA_DIR}/config.toml --datadir ${DATA_DIR} --netrestrict ${CLUSTER_CIDR} \
     --verbosity ${VERBOSE} --nousb --ethstats ${NODE_ID}:${NETSTATS_URL} \
     --bootnodes enode://${BOOTSTRAP_PUB_KEY}@${BOOTSTRAP_IP}:${BOOTSTRAP_TCP_PORT} \
-    --mine -unlock ${VALIDATOR_ADDR} --password /dev/null \
+    --mine --miner.etherbase ${VALIDATOR_ADDR} --unlock ${VALIDATOR_ADDR} --password /dev/null \
     --light.serve 50 --pprof.addr 0.0.0.0 --metrics \
-    --rpc.allow-unprotected-txs --txlookuplimit  15768000 \
+    --rpc.allow-unprotected-txs --allow-insecure-unlock --txlookuplimit  15768000 \
     --pprof

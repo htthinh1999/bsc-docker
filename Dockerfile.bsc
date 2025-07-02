@@ -3,7 +3,7 @@ FROM golang:1.23
 ARG GIT_SOURCE
 ARG GIT_CHECKOUT_REF
 
-RUN apt update && apt install make gcc libc-dev binutils-gold musl-dev git build-essential ash -y
+RUN apt update && apt install make gcc libc-dev binutils-gold musl-dev git build-essential netcat-openbsd -y
 
 RUN cd / && git clone ${GIT_SOURCE} \
     && cd ./bsc && git checkout ${GIT_CHECKOUT_REF} && make geth
