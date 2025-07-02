@@ -12,7 +12,7 @@ services:
       - ./storage/bsc-rpc:/root/.ethereum
       - ./scripts:/scripts
       - ./config:/config
-    command: ash /scripts/bsc-rpc.sh
+    command: /scripts/bsc-rpc.sh
 
   bsc-validator1:
     image: bsc-geth:docker-local
@@ -23,7 +23,7 @@ services:
     volumes:
       - ./storage/bsc-validator1:/root/.ethereum
       - ./scripts:/scripts
-    command: ash /scripts/bsc-validator.sh
+    command: /scripts/bsc-validator.sh
 
   netstats:
     build: ./netstats
