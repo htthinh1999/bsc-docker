@@ -1,11 +1,47 @@
-FROM ethereum/solc:0.6.4-alpine
+FROM ubuntu:24.04
 
-RUN apk add --d --no-cache ca-certificates npm nodejs bash alpine-sdk
+# Install prerequisites
+RUN apt-get update && apt-get install -y \
+    ca-certificates \
+    npm \
+    nodejs \
+    bash \
+    build-essential \
+    python3 \
+    python3-pip \
+    git \
+    curl \
+    wget \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set up python
+ENV PYTHONUNBUFFERED=1
+RUN ln -sf python3 /usr/bin/python
+
+# Install Solidity
+RUN wget https://github.com/ethereum/solidity/releases/download/v0.8.30/solc-static-linux \
+    && chmod +x solc-static-linux \
+    && mv solc-static-linux /usr/local/bin/solc
 
 RUN git clone https://github.com/bnb-chain/bsc-genesis-contract.git /root/genesis \
     && rm /root/genesis/package-lock.json && cd /root/genesis && npm install
 
-COPY scripts/init_holders.template /root/genesis/init_holders.template
+# Install Foundry
+RUN curl -L https://foundry.paradigm.xyz | bash
+ENV PATH="/root/.foundry/bin:${PATH}"
+RUN foundryup
+
+# Install Poetry
+RUN curl -sSL https://install.python-poetry.org | python3 -
+ENV PATH="/root/.local/bin:${PATH}"
+
+# Install forge-std and poetry dependencies in the genesis contract directory
+WORKDIR /root/genesis
+RUN forge install --no-git foundry-rs/forge-std@v1.7.3
+RUN poetry install
+WORKDIR /
+
+COPY scripts/init_holders.template /root/genesis/scripts/init_holders.template
 
 COPY --from=bsc-geth:docker-local /usr/local/bin/geth /usr/local/bin/geth
 

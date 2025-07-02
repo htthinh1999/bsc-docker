@@ -1,7 +1,17 @@
-const web3 = require("web3")
+const web3 = require('web3');
+const init_holders = [
+  {
+     address: '0x37B8516a0F88E65D677229b402ec6C1e0E333004',
+     balance: BigInt('500000000000000000000').toString(16) // 500e18
+  },
+  {
+     address: '0x6c468CF8c9879006E22EC4029696E005C2319C9D',
+     balance: BigInt('500000000000000000000').toString(16) // 500e18
+  },
+  {% for initHolder in initHolders %}{
+     address: '{{initHolder }}',
+     balance: BigInt('500000000000000000000000000').toString(16) // 500000000e18
+  },{% endfor %}
+];
 
-const addresses = "{{INIT_HOLDER_ADDRESSES}}"
-const balance = web3.utils.toBN("{{INIT_HOLDER_BALANCE}}").toString("hex")
-const init_holders = addresses.split(",").map(address => ({ address, balance }));
-
-exports = module.exports = init_holders
+exports = module.exports = init_holders;

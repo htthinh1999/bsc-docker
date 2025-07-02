@@ -12,40 +12,40 @@ services:
       - ./storage/bsc-rpc:/root/.ethereum
       - ./scripts:/scripts
       - ./config:/config
-    command: ash /scripts/bsc-rpc.sh
+    command: /scripts/bsc-rpc.sh
 
   cluster-bsc-validator1:
     image: bsc-geth:docker-local
     env_file: .env
     environment:
       NODE_ID: bsc-validator1
-      BOOTSTRAP_HOST: cluster-bsc-rpc
+      BOOTSTRAP_HOST: bsc-docker-cluster-bsc-rpc-1
     volumes:
       - ./storage/bsc-validator1:/root/.ethereum
       - ./scripts:/scripts
-    command: ash /scripts/bsc-validator.sh
+    command: /scripts/bsc-validator.sh
 
   cluster-bsc-validator2:
     image: bsc-geth:docker-local
     env_file: .env
     environment:
       NODE_ID: bsc-validator2
-      BOOTSTRAP_HOST: cluster-bsc-rpc
+      BOOTSTRAP_HOST: bsc-docker-cluster-bsc-rpc-1
     volumes:
       - ./storage/bsc-validator2:/root/.ethereum
       - ./scripts:/scripts
-    command: ash /scripts/bsc-validator.sh
+    command: /scripts/bsc-validator.sh
 
   cluster-bsc-validator3:
     image: bsc-geth:docker-local
     env_file: .env
     environment:
       NODE_ID: bsc-validator3
-      BOOTSTRAP_HOST: cluster-bsc-rpc
+      BOOTSTRAP_HOST: bsc-docker-cluster-bsc-rpc-1
     volumes:
       - ./storage/bsc-validator3:/root/.ethereum
       - ./scripts:/scripts
-    command: ash /scripts/bsc-validator.sh
+    command: /scripts/bsc-validator.sh
 
   netstats:
     build: ./netstats

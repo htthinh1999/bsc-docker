@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 source /scripts/utils.sh
 
 DATA_DIR=/root/.ethereum

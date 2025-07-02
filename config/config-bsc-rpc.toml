@@ -9,18 +9,18 @@ GasFloor = 30000000
 GasCeil = 40000000
 GasPrice = 5000000000
 Recommit = 10000000000
-Noverify = false
+# Noverify = false
 
-[Eth.Ethash]
-CacheDir = ""
-CachesInMem = 0
-CachesOnDisk = 0
-CachesLockMmap = false
-DatasetDir = ""
-DatasetsInMem = 0
-DatasetsOnDisk = 0
-DatasetsLockMmap = false
-PowMode = 0
+# [Eth.Ethash]
+# CacheDir = ""
+# CachesInMem = 0
+# CachesOnDisk = 0
+# CachesLockMmap = false
+# DatasetDir = ""
+# DatasetsInMem = 0
+# DatasetsOnDisk = 0
+# DatasetsLockMmap = false
+# PowMode = 0
 
 [Eth.TxPool]
 Locals = []
@@ -39,7 +39,7 @@ Lifetime = 600000000000
 Blocks = 20
 Percentile = 60
 OracleThreshold = 20
-Default = 5000000000
+# Default = 5000000000
 
 [Node]
 DataDir = "node"
