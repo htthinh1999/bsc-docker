@@ -3,6 +3,7 @@
 source /scripts/utils.sh
 
 DATA_DIR=/root/.ethereum
+KEYS_DIR=/keys
 
 account_cnt=$(ls ${DATA_DIR}/keystore | wc -l)
 i=1

@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y \
     curl \
     wget \
     netcat-openbsd \
+    jq \
     && rm -rf /var/lib/apt/lists/*
 
 # Set up python

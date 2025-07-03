@@ -3,6 +3,7 @@
 source /scripts/utils.sh
 
 DATA_DIR=/root/.ethereum
+KEYS_DIR=/keys
 
 wait_for_host_port ${BOOTSTRAP_HOST} ${BOOTSTRAP_TCP_PORT}
 BOOTSTRAP_IP=$(get_host_ip $BOOTSTRAP_HOST)
@@ -11,10 +12,12 @@ HOST_IP=$(hostname -i)
 
 echo "validator id: ${HOST_IP}"
 
-geth --config ${DATA_DIR}/config.toml --datadir ${DATA_DIR} --netrestrict ${CLUSTER_CIDR} \
+geth --config ${DATA_DIR}/config.toml --datadir ${DATA_DIR} --nodekey ${DATA_DIR}/geth/nodekey --netrestrict ${CLUSTER_CIDR} \
     --verbosity ${VERBOSE} --nousb --ethstats ${NODE_ID}:${NETSTATS_URL} \
     --bootnodes enode://${BOOTSTRAP_PUB_KEY}@${BOOTSTRAP_IP}:${BOOTSTRAP_TCP_PORT} \
-    --mine --miner.etherbase ${VALIDATOR_ADDR} --unlock ${VALIDATOR_ADDR} --password /dev/null \
+    --vote --mine --miner.etherbase ${VALIDATOR_ADDR} --unlock ${VALIDATOR_ADDR} \
+    --password ${KEYS_DIR}/password.txt \
+    --blspassword ${KEYS_DIR}/password.txt \
     --light.serve 50 --pprof.addr 0.0.0.0 --metrics \
     --rpc.allow-unprotected-txs --allow-insecure-unlock --txlookuplimit  15768000 \
     --pprof

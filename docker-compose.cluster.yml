@@ -12,6 +12,7 @@ services:
       - ./storage/bsc-rpc:/root/.ethereum
       - ./scripts:/scripts
       - ./config:/config
+      - ./keys/password.txt:/keys/password.txt
     command: /scripts/bsc-rpc.sh
 
   cluster-bsc-validator1:
@@ -23,6 +24,7 @@ services:
     volumes:
       - ./storage/bsc-validator1:/root/.ethereum
       - ./scripts:/scripts
+      - ./keys:/keys
     command: /scripts/bsc-validator.sh
 
   cluster-bsc-validator2:
@@ -34,6 +36,7 @@ services:
     volumes:
       - ./storage/bsc-validator2:/root/.ethereum
       - ./scripts:/scripts
+      - ./keys:/keys
     command: /scripts/bsc-validator.sh
 
   cluster-bsc-validator3:
@@ -45,6 +48,7 @@ services:
     volumes:
       - ./storage/bsc-validator3:/root/.ethereum
       - ./scripts:/scripts
+      - ./keys:/keys
     command: /scripts/bsc-validator.sh
 
   netstats:
