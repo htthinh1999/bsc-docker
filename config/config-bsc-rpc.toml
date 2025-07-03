@@ -4,17 +4,15 @@ TrieTimeout = 360000000000
 EnablePreimageRecording = false
 
 [Eth.Miner]
-GasFloor = 30000000
-GasCeil = 40000000
-GasPrice = 5000000000
-Recommit = 10000000000
+GasCeil = 35000000
+GasPrice = 100
 
 [Eth.TxPool]
 Locals = []
 NoLocals = true
 Journal = "transactions.rlp"
 Rejournal = 3600000000000
-PriceLimit = 5000000000
+PriceLimit = 100
 PriceBump = 10
 AccountSlots = 128
 GlobalSlots = 10000

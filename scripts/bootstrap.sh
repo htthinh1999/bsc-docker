@@ -26,6 +26,9 @@ function init_validator_data_for_genesis() {
 }
 
 function generate_genesis() {
+     initHolders=$(ls ${workspace}/init-holders | tr '\n' ',')
+     initHolders="${initHolders},${INIT_HOLDER}"
+     
      for ((i=1; i<=${NUMS_OF_VALIDATOR};i++)); do
           for f in ${workspace}/keys/validator${i}/keystore/*; do
                cons_addr="0x$(cat ${f} | jq -r .address)"
